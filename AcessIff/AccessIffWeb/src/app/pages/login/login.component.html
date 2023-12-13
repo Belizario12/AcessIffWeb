@@ -1,0 +1,28 @@
+<div class="login">
+  <div class="loginContainer">
+    <div class="imgLogin">
+      <img src="../../../assets/logoIff.jpeg" alt="logoIff" class="logoIff">
+    </div>
+    <div class="loginInputs">
+      <p class="title">Entrar</p>
+      <form [formGroup]="formLogin" class="formLogin">
+        <mat-form-field class="inputLogin">
+          <mat-label>E-mail ou matrícula</mat-label>
+          <input matInput formControlName="user">
+          <mat-error *ngIf="formLogin.controls['user'].hasError('required')">E-mail inválido!</mat-error>
+        </mat-form-field>
+        <mat-form-field class="inputLogin">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password">
+          <mat-error *ngIf="formLogin.controls['password'].hasError('required')">Senha inválida!</mat-error>
+        </mat-form-field>
+      </form>
+      <div class="recoveryPassword">
+        <a href="#">Esqueci minha senha</a>
+      </div>
+      <div class="btnLogin">
+        <button mat-raised-button class="buttonConfirm" (click)="login()">Entrar</button>
+      </div>
+    </div>
+  </div>
+</div>
