@@ -21,6 +21,10 @@ export class CookieGeneratorService {
     return jwtDecode(cookieValue);
   }
 
+  public getToken() {
+    return this.cookie.get('token');
+  }
+
   public deleteCookie() {
     this.cookie.delete('token', '/');
   }

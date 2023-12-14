@@ -13,7 +13,9 @@
         </mat-form-field>
         <mat-form-field class="inputLogin">
           <mat-label>Senha</mat-label>
-          <input matInput formControlName="password">
+          <input matInput matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="formLogin.controls['password'].hasError('required')">Senha inválida!</mat-error>
         </mat-form-field>
       </form>

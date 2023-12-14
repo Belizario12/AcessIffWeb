@@ -1,0 +1,19 @@
+.footer{
+  background-color: #cccccc;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.footerVersion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.footerVersion p {
+  color: #5ba141;
+  font-size: 14px;
+  margin: 5px 0px;
+}
