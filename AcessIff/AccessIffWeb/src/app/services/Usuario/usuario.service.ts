@@ -23,7 +23,7 @@ export class UsuarioService {
       .set("pageNumber", pageNumber.toString())
       .set("pageSize", pageSize.toString());
 
-    return this.http.get(apiUrl + "Usuario", { headers: headers });
+    return this.http.get(apiUrl + "Usuario", { headers: headers, params: params });
   }
 
   public postUsuario(usuario: Usuario) {
@@ -35,7 +35,7 @@ export class UsuarioService {
   public putUsuario(usuario: Usuario) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.cookie.getToken()}`);
 
-    return this.http.put(apiUrl + "Usuario" + usuario.id, usuario, { headers: headers });
+    return this.http.put(apiUrl + "Usuario/" + usuario.id, usuario, { headers: headers });
   }
 
   public deleteUsuario(id: string) {

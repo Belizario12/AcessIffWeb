@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Usuario } from 'src/app/interfaces/usuario';
 import { UnitOfWorkService } from 'src/app/services/UnitOfWork/unit-of-work.service';
 
 @Injectable({
@@ -24,5 +25,16 @@ export class UsuarioControllerService {
 
   public deleteUsuario(id: string) {
     return this.context.usuarioService.deleteUsuario(id);
+  }
+
+  public returnUsuarioEmpty() {
+    const usuario: Usuario = {
+      id: '',
+      nome: '',
+      email: '',
+      senha: '',
+      cargo: 1,
+    }
+    return usuario;
   }
 }

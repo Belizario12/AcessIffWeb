@@ -36,7 +36,7 @@ export class AlunoService {
   public PutAluno (aluno: Aluno) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.cookie.getToken()}`);
 
-    return this.http.put(apiUrl + "Usuario/aluno", aluno, { headers: headers });
+    return this.http.put(apiUrl + `Usuario/aluno/${aluno.id}`, aluno, { headers: headers });
   }
 
   public DeleteAluno (id: string) {

@@ -24,7 +24,6 @@ export class DeleteModalComponent {
         this.matDialogRef.close();
       },
       error: (error: any) => {
-        console.log(error);
         this.toastr.error(error.error.message, "Erro!");
       }
     })

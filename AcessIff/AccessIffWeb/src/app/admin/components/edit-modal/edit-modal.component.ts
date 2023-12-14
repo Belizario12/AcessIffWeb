@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { UnitOfControllerService } from 'src/app/controllers/UnitOfController/unit-of-controller.service';
 import { Aluno } from 'src/app/interfaces/aluno';
+import { Usuario } from 'src/app/interfaces/usuario';
 
 @Component({
   selector: 'app-edit-modal',
@@ -15,6 +16,7 @@ export class EditModalComponent {
   alunoForm!: FormGroup;
   funcionarioForm!: FormGroup;
   alunoObj: Aluno = this.controller.alunoController.getAlunoEmpty();
+  funcionarioObj: Usuario = this.controller.usuarioController.returnUsuarioEmpty();
 
   constructor(
     public dialogRef: MatDialogRef<EditModalComponent>,
@@ -23,24 +25,28 @@ export class EditModalComponent {
     private controller: UnitOfControllerService,
     private toastr: ToastrService,
   ) {
-    this.alunoForm = this.fb.group({
-      matricula: [data.element && data.element.matricula || '', Validators.required],
-      nome: [data.element && data.element.nome || '', Validators.required],
-      email: [data.element && data.element.email || '', Validators.required],
-      senha: [data.element && data.element.senha || '', Validators.required],
-      rg: [data.element && data.element.rg || ''],
-      cpf: [data.element && data.element.cpf || '', Validators.required],
-      dataNascimento: [data.element && data.element.dataNascimento || '', Validators.required],
-      genero: [data.element && data.element.genero || ''],
-      endereco: [data.element && data.element.endereco || '', Validators.required],
-      telefone: [data.element && data.element.telefone || '', Validators.required],
-    })
+    console.log(data);
+    if (data.element.aluno === null) {
+      this.funcionarioForm = this.fb.group({
+        nome: [data.element && data.element.nome || '', Validators.required],
+        email: [data.element && data.element.email || '', Validators.required],
+        senha: [data.element && data.element.senha || '', Validators.required],
+      })
+    } else {
+      this.alunoForm = this.fb.group({
+        matricula: [data.element && data.element.aluno.matricula || '', Validators.required],
+        nome: [data.element && data.element.nome || '', Validators.required],
+        email: [data.element && data.element.email || '', Validators.required],
+        senha: [data.element && data.element.senha || '', Validators.required],
+        rg: [data.element && data.element.aluno.rg || ''],
+        cpf: [data.element && data.element.aluno.cpf || '', Validators.required],
+        dataNascimento: [data.element && data.element.aluno.dataNascimento || '', Validators.required],
+        genero: [data.element && data.element.aluno.genero || ''],
+        endereco: [data.element && data.element.aluno.endereco || '', Validators.required],
+        telefone: [data.element && data.element.aluno.telefone || '', Validators.required],
+      })
+    }
 
-    this.funcionarioForm = this.fb.group({
-      nome: [data.element && data.element.nome || '', Validators.required],
-      email: [data.element && data.element.email || '', Validators.required],
-      senha: [data.element && data.element.senha || '', Validators.required],
-    })
   }
 
   fechar(): void {
@@ -82,7 +88,6 @@ export class EditModalComponent {
       this.alunoObj.genero = this.alunoForm.get('genero')?.value;
       this.alunoObj.endereco = this.alunoForm.get('endereco')?.value;
       this.alunoObj.telefone = this.alunoForm.get('telefone')?.value;
-      console.log(this.alunoObj);
       this.controller.alunoController.PutAluno(this.alunoObj).subscribe({
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
@@ -98,7 +103,11 @@ export class EditModalComponent {
 
   saveFuncionario(): void {
     if(this.data.type === "Create") {
-      this.controller.usuarioController.postUsuario(this.funcionarioForm.value).subscribe({
+      this.funcionarioObj.nome = this.funcionarioForm.get('nome')?.value;
+      this.funcionarioObj.email = this.funcionarioForm.get('email')?.value;
+      this.funcionarioObj.senha = this.funcionarioForm.get('senha')?.value;
+      this.funcionarioObj.cargo = 2;
+      this.controller.usuarioController.postUsuario(this.funcionarioObj).subscribe({
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
           this.dialogRef.close();
@@ -109,8 +118,11 @@ export class EditModalComponent {
         }
       })
     } else if (this.data.type === "Edit") {
-      this.funcionarioForm.value.id = this.data.element.id;
-      this.controller.usuarioController.putUsuario(this.funcionarioForm.value).subscribe({
+      this.funcionarioObj.id = this.data.element.id;
+      this.funcionarioObj.nome = this.funcionarioForm.get('nome')?.value;
+      this.funcionarioObj.email = this.funcionarioForm.get('email')?.value;
+      this.funcionarioObj.cargo = 2;
+      this.controller.usuarioController.putUsuario(this.funcionarioObj).subscribe({
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
           this.dialogRef.close();

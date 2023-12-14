@@ -41,6 +41,7 @@ export class FuncionarioComponent {
   loadFuncionarios(pageNumber: number, pageSize: number) {
     this.controler.usuarioController.getUsuario(pageNumber, pageSize).subscribe({
       next: (result: any) => {
+        console.log(result);
         this.dataSource.data = result.metadata.data;
       },
       error: (error: any) => {
@@ -86,6 +87,9 @@ export class FuncionarioComponent {
       data: {
         type: 'Create',
         cargo: "funcionario",
+        element: {
+          aluno: null
+        }
       }
     }) : null;
   }
