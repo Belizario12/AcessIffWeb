@@ -1,0 +1,56 @@
+@import '../../../../styles.scss';
+
+.modalAluno {
+  width: 690px;
+}
+
+.formContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.matDialogTitle {
+  background-color: $green;
+  font-size: 30px !important;
+}
+
+.matDialogTitle p {
+  color: #fff !important;
+}
+
+.formContainer {
+  width: 600px !important;
+  margin: 10px 0px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 40px 20px 0px;
+}
+
+.confirmButton, .cancelButton {
+  background-color: $green;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding: 10px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    transition: 0.7s;
+  }
+}
+
+.cancelButton {
+  background-color: #fff;
+  color: $green;
+  border: 1px solid $green;
+  margin-left: 10px;
+}
+

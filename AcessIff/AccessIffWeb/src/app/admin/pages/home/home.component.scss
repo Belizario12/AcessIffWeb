@@ -1,0 +1,52 @@
+@import '../../../../styles.scss';
+
+.home {
+  width: 100%;
+  height: 80%;
+  animation: bounceInRight;
+  animation-duration: 0.7s;
+}
+
+.homeContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.menuAlignment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.menuContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+
+.menuButton {
+  width: 220px;
+  height: 200px;
+  background-color: $green;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transition: 0.7s;
+  }
+}
+
+.menuImg{
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+}
+
+.menuText {
+  color: #fff;
+  font-size: 20px;
+}

@@ -1,0 +1,64 @@
+<div class="aluno">
+  <div class="title">
+    Aluno
+  </div>
+  <div class="alunoContainer">
+    <div class="tableShadow">
+      <div class="alunoTable"
+        infinite-scroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="300"
+        [scrollWindow]="false"
+        (scrolled)="loadNextPage()">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+
+          <ng-container matColumnDef="cpf">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              CPF
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.aluno.cpf}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Nome
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="matricula">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Matricula
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.aluno.matricula}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>
+              Editar
+            </th>
+            <td mat-cell *matCellDef="let element"><button class="tableButtons" (click)="openModal('Edit', element)"><mat-icon>edit</mat-icon></button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>
+              Deletar
+            </th>
+            <td mat-cell *matCellDef="let element"><button class="tableButtons" (click)="openModal('Delete', element)"><mat-icon>delete</mat-icon></button></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+  </div>
+  <div class="buttons">
+    <div class="cadastrarAluno">
+      <button class="btnCadastrar" (click)="openModal('Create')">Cadastrar Aluno</button>
+    </div>
+    <div class="voltar">
+      <button class="btnVoltar" (click)="back()">Voltar</button>
+    </div>
+  </div>
+</div>
+

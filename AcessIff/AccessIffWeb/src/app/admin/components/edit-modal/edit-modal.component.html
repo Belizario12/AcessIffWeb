@@ -1,0 +1,114 @@
+<div class="modalAluno" *ngIf="data.cargo === 'aluno'">
+  <div class="matDialogTitle">
+    <p matDialogTitle *ngIf="data.type === 'Create'">Cadastrar Aluno</p>
+    <p matDialogTitle *ngIf="data.type === 'Edit'">Editar Aluno</p>
+  </div>
+  <div class="formContent">
+    <form [formGroup]="alunoForm" class="formContainer">
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Matrícula</mat-label>
+        <input type="number" matInput formControlName="matricula" required />
+        <mat-error *ngIf="alunoForm.controls['matricula'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" required />
+        <mat-error *ngIf="alunoForm.controls['nome'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="alunoForm.controls['email'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data" *ngIf="data.type === 'Create'">
+        <mat-label>Senha</mat-label>
+        <input min="0" matInput formControlName="senha" required />
+        <mat-error *ngIf="alunoForm.controls['senha'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>RG</mat-label>
+        <input type="number" matInput type="text" formControlName="rg" aria-label="Categoria">
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>CPF</mat-label>
+        <input type="number" matInput type="text" formControlName="cpf" aria-label="Categoria">
+        <mat-error *ngIf="alunoForm.controls['cpf'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Data Nascimento</mat-label>
+        <input type="date" matInput formControlName="dataNascimento" required />
+        <mat-error *ngIf="alunoForm.controls['dataNascimento'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Gênero</mat-label>
+        <input matInput type="text" formControlName="genero" aria-label="Categoria">
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Endereco</mat-label>
+        <input matInput type="text" formControlName="endereco" aria-label="Categoria">
+        <mat-error *ngIf="alunoForm.controls['endereco'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Telefone</mat-label>
+        <input matInput type="text" formControlName="telefone" aria-label="Categoria">
+        <mat-error *ngIf="alunoForm.controls['telefone'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="saveAluno()">Salvar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>
+
+
+<div class="modalFuncionario" *ngIf="data.cargo === 'funcionario'">
+  <div class="matDialogTitle">
+    <p matDialogTitle>Cadastrar Funcionario</p>
+  </div>
+  <div class="formContent">
+    <form [formGroup]="funcionarioForm" class="formContainer">
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" required />
+        <mat-error *ngIf="funcionarioForm.controls['nome'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="funcionarioForm.controls['email'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data" *ngIf="data.type === 'Create'">
+        <mat-label>Senha</mat-label>
+        <input min="0" matInput formControlName="senha" required />
+        <mat-error *ngIf="funcionarioForm.controls['senha'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="saveFuncionario()">Salvar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>
