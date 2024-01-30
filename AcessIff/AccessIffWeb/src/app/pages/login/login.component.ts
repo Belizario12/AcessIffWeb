@@ -34,6 +34,7 @@ export class LoginComponent {
     this.controller.loginController.Login(this.loginObj).subscribe({
       next: (result: any) => {
         this.controller.cookieController.setCookie(result.metadata.Data);
+        console.log(this.controller.cookieController.getCookie());
         this.toastr.success("Login efetuado com sucesso!", "Sucesso");
         this.route.navigate(['/admin']);
 
