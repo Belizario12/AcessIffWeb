@@ -23,6 +23,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { EmissaoAlertasComponent } from './pages/emissao-alertas/emissao-alertas.component';
 import { HorarioComponent } from './pages/horario/horario.component';
 import { QrCodeComponent } from './pages/qr-code/qr-code.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { QrCodeComponent } from './pages/qr-code/qr-code.component';
     MatAutocompleteModule,
     MatInputModule,
     FullCalendarModule,
+    MatSelectModule,
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,128 @@
+@import "../../../../styles.scss";
+
+.horarioContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88%;
+}
+
+.horarioLeft {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.horarioImg {
+  width: 560px;
+}
+
+.horarioRight {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 150px;
+}
+
+.horarioTitle {
+  color: $green;
+  font-size: 60px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+.horarioGroup {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.data {
+  width: 500px;
+}
+
+.horarioButton {
+  margin-top: 20px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnSave {
+  --color: $green;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2em;
+  line-height: 1.5em;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid $green;
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: $green;
+}
+
+.btnSave:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: $green;
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.btnSave:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.btnSave:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.btnSave:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.btnSave:active:before {
+  background: $green;
+  transition: background 0s;
+}
+
+.btnBack {
+  --secondary-color: #fff;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 6px;
+  color: var(--secondary-color);
+  padding: 0.7em 1.8em;
+  background: $green;
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.btnBack:hover {
+  background-color: $background;
+  color: $green;
+  cursor: pointer;
+}

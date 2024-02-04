@@ -1,1 +1,57 @@
-<p>horario works!</p>
+<div class="horarioContainer">
+  <div class="horarioLeft">
+    <img src="../../../../assets/horario.png" alt="horarioImg" class="horarioImg">
+  </div>
+  <div class="horarioRight">
+    <h2 class="horarioTitle">Cadastro de Horários</h2>
+    <form [formGroup]="horarioForm" class="horarioGroup">
+      <div class="horarioForm">
+        <mat-form-field color="accent" appearance="outline" class="data">
+          <mat-label>Disciplina</mat-label>
+          <input matInput formControlName="disciplina" required />
+          <mat-error *ngIf="horarioForm.controls['disciplina'].hasError('required')">
+            A disciplina é obrigatória!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="outline" class="data">
+          <mat-label>Curso</mat-label>
+          <input matInput formControlName="curso" required />
+          <mat-error *ngIf="horarioForm.controls['curso'].hasError('required')">
+            O curso é obrigatório!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="outline" class="data">
+          <mat-label>Dia da Semana</mat-label>
+          <mat-select formControlName="diaSemana" placeholder="Selecione o dia da semana">
+            <mat-option value="segunda">Segunda-Feira</mat-option>
+            <mat-option value="terca">Terça-Feira</mat-option>
+            <mat-option value="quarta">Quarta-Feira</mat-option>
+            <mat-option value="quinta">Quinta-Feira</mat-option>
+            <mat-option value="sexta">Sexta-Feira</mat-option>
+          </mat-select>
+          <mat-error *ngIf="horarioForm.controls['diaSemana'].hasError('required')">
+            O dia é obrigatório!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="outline" class="data">
+          <mat-label>Horário de início</mat-label>
+          <input matInput type="time" formControlName="inicio" required />
+          <mat-error *ngIf="horarioForm.controls['inicio'].hasError('required')">
+            O horário de início é obrigatório!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="outline" class="data">
+          <mat-label>Horário de término</mat-label>
+          <input matInput type="time" formControlName="termino" required />
+          <mat-error *ngIf="horarioForm.controls['termino'].hasError('required')">
+            O horário de término é obrigatório!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="horarioButton">
+      <button class="btnBack" (click)="back()">Voltar</button>
+      <button class="btnSave" (click)="save()">Salvar</button>
+    </div>
+  </div>
+</div>
