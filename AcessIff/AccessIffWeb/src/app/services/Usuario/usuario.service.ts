@@ -26,6 +26,18 @@ export class UsuarioService {
     return this.http.get(apiUrl + "Usuario", { headers: headers, params: params });
   }
 
+  public getUsuarioByName(name: string, pageNumber: number, pageSize: number) {
+    const token = this.cookie.getToken();
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+
+    const params = new HttpParams()
+      .set("nome", name)
+      .set("pageNumber", pageNumber.toString())
+      .set("pageSize", pageSize.toString());
+
+    return this.http.get(apiUrl + "Usuario/nome", { headers: headers, params: params });
+  }
+
   public postUsuario(usuario: Usuario) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.cookie.getToken()}`);
 

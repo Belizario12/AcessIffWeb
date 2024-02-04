@@ -7,6 +7,7 @@ import { UnitOfControllerService } from 'src/app/controllers/UnitOfController/un
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalComponent } from '../../components/edit-modal/edit-modal.component';
 import { DeleteModalComponent } from '../../components/delete-modal/delete-modal.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-funcionario',
@@ -20,7 +21,9 @@ export class FuncionarioComponent {
   totalPages = 1;
   pageSize = 15;
   dataSource = new MatTableDataSource<any>();
+  pesquisaControl = new FormControl();
   displayedColumns: string[] = [
+    'matricula',
     'name',
     'email',
     'edit',
@@ -29,7 +32,7 @@ export class FuncionarioComponent {
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
-    private controler: UnitOfControllerService,
+    private controller: UnitOfControllerService,
     private toastr: ToastrService,
     private dialog: MatDialog,
   ) {}
@@ -38,8 +41,29 @@ export class FuncionarioComponent {
     this.loadFuncionarios(this.currentPage, this.pageSize);
   }
 
+  applyFilter(pesquisaValue: FormControl) {
+    if (pesquisaValue.value === '') {
+      this.loadFuncionarios(this.currentPage, this.pageSize);
+    } else {
+      console.log(pesquisaValue.value.trim().toLowerCase())
+      this.controller.usuarioController
+        .getUsuarioByName(pesquisaValue.value.trim().toLowerCase(), this.currentPage=1, this.pageSize)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data)
+            const users = data.metadata.data;
+            this.dataSource.data = users;
+          },
+          error: (error) => {
+            console.log(error)
+            this.dataSource = new MatTableDataSource<any>();
+          },
+        });
+    }
+  }
+
   loadFuncionarios(pageNumber: number, pageSize: number) {
-    this.controler.usuarioController.getUsuario(pageNumber, pageSize).subscribe({
+    this.controller.usuarioController.getUsuario(pageNumber, pageSize).subscribe({
       next: (result: any) => {
         console.log(result);
         this.dataSource.data = result.metadata.data;
@@ -70,6 +94,8 @@ export class FuncionarioComponent {
   openModal(type: string, element?: any) {
     type === 'Edit' ? this.dialog.open(EditModalComponent,
       {
+        width: '480px',
+        height: '300px',
         data: {
           type: 'Edit',
           cargo: "funcionario",
@@ -84,12 +110,11 @@ export class FuncionarioComponent {
       }
     }) : null;
     type === 'Create' ? this.dialog.open(EditModalComponent, {
+      width: '480px',
+      height: '300px',
       data: {
         type: 'Create',
         cargo: "funcionario",
-        element: {
-          aluno: null
-        }
       }
     }) : null;
   }

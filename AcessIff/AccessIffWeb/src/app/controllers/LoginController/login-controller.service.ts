@@ -17,6 +17,7 @@ export class LoginControllerService {
 
   public returnLoginEmpty() {
     const loginObj: Login = {
+      matricula: '',
       email: '',
       senha: '',
     }

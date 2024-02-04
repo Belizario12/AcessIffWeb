@@ -15,6 +15,10 @@ export class UsuarioControllerService {
     return this.context.usuarioService.getUsuario(pageNumber, pageSize);
   }
 
+  public getUsuarioByName(name: string, pageNumber: number, pageSize: number) {
+    return this.context.usuarioService.getUsuarioByName(name, pageNumber, pageSize);
+  }
+
   public postUsuario(usuario: any) {
     return this.context.usuarioService.postUsuario(usuario);
   }

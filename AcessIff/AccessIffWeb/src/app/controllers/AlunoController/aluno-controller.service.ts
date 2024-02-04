@@ -2,6 +2,8 @@ import { UnitOfControllerService } from 'src/app/controllers/UnitOfController/un
 import { Injectable } from '@angular/core';
 import { UnitOfWorkService } from 'src/app/services/UnitOfWork/unit-of-work.service';
 import { Aluno } from 'src/app/interfaces/aluno';
+import { Observable } from 'rxjs';
+import { MetadataResponse } from 'src/app/interfaces/metadata';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,10 @@ export class AlunoControllerService {
 
   public GetAlunos(pageNumber: number, pageSize: number): any {
     return this.context.alunoService.GetAlunos(pageNumber, pageSize);
+  }
+
+  public GetAlunoByName(nome: string, pageNumber: number, pageSize: number): Observable<MetadataResponse> {
+    return this.context.alunoService.GetAlunoByName(nome, pageNumber, pageSize);
   }
 
   public PostAluno(aluno: any): any {

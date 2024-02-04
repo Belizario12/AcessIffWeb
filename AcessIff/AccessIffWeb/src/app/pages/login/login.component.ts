@@ -28,12 +28,16 @@ export class LoginComponent {
   }
 
   login() {
-    this.loginObj.email = this.formLogin.get('user')?.value;
-    this.loginObj.senha = this.formLogin.get('password')?.value;
+    /^[0-9]+$/.test(this.formLogin.get('user')?.value)
+      ? this.loginObj.matricula = this.formLogin.get('user')?.value
+      : this.loginObj.email = this.formLogin.get('user')?.value;
+
+      this.loginObj.senha = this.formLogin.get('password')?.value;
 
     this.controller.loginController.Login(this.loginObj).subscribe({
       next: (result: any) => {
         this.controller.cookieController.setCookie(result.metadata.Data);
+        console.log(this.controller.cookieController.getCookie());
         this.toastr.success("Login efetuado com sucesso!", "Sucesso");
         this.route.navigate(['/admin']);
 

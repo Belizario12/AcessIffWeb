@@ -26,8 +26,10 @@ export class EditModalComponent {
     private toastr: ToastrService,
   ) {
     console.log(data);
-    if (data.element.aluno === null) {
+
+    if (data.cargo === 'funcionario') {
       this.funcionarioForm = this.fb.group({
+        matricula: [data.element && data.element.matricula || '', Validators.required],
         nome: [data.element && data.element.nome || '', Validators.required],
         email: [data.element && data.element.email || '', Validators.required],
         senha: [data.element && data.element.senha || '', Validators.required],
@@ -70,6 +72,7 @@ export class EditModalComponent {
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
           this.dialogRef.close();
+          window.location.reload();
         },
         error: (error: any) => {
           console.log(error);
@@ -92,6 +95,7 @@ export class EditModalComponent {
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
           this.dialogRef.close();
+          window.location.reload();
         },
         error: (error: any) => {
           console.log(error);
@@ -103,6 +107,7 @@ export class EditModalComponent {
 
   saveFuncionario(): void {
     if(this.data.type === "Create") {
+      this.funcionarioObj.matricula = this.funcionarioForm.get('matricula')?.value?.toString();
       this.funcionarioObj.nome = this.funcionarioForm.get('nome')?.value;
       this.funcionarioObj.email = this.funcionarioForm.get('email')?.value;
       this.funcionarioObj.senha = this.funcionarioForm.get('senha')?.value;
@@ -111,6 +116,7 @@ export class EditModalComponent {
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
           this.dialogRef.close();
+          window.location.reload();
         },
         error: (error: any) => {
           console.log(error);
@@ -119,6 +125,7 @@ export class EditModalComponent {
       })
     } else if (this.data.type === "Edit") {
       this.funcionarioObj.id = this.data.element.id;
+      this.funcionarioObj.matricula = this.funcionarioForm.get('matricula')?.value?.toString();
       this.funcionarioObj.nome = this.funcionarioForm.get('nome')?.value;
       this.funcionarioObj.email = this.funcionarioForm.get('email')?.value;
       this.funcionarioObj.cargo = 2;
@@ -126,6 +133,7 @@ export class EditModalComponent {
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
           this.dialogRef.close();
+          window.location.reload();
         },
         error: (error: any) => {
           console.log(error);

@@ -6,12 +6,12 @@
     <div class="loginInputs">
       <p class="title">Entrar</p>
       <form [formGroup]="formLogin" class="formLogin">
-        <mat-form-field class="inputLogin">
+        <mat-form-field class="inputLogin" color="accent">
           <mat-label>E-mail ou matrícula</mat-label>
           <input matInput formControlName="user">
           <mat-error *ngIf="formLogin.controls['user'].hasError('required')">E-mail inválido!</mat-error>
         </mat-form-field>
-        <mat-form-field class="inputLogin">
+        <mat-form-field class="inputLogin" color="accent">
           <mat-label>Senha</mat-label>
           <input matInput matInput [type]="hide ? 'password' : 'text'" formControlName="password">
           <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"

@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Aluno } from 'src/app/interfaces/aluno';
 import { apiUrl } from 'src/app/utils/apiUrl';
 import { CookieGeneratorService } from '../Cookie/cookie-generator.service';
+import { Observable } from 'rxjs';
+import { MetadataResponse } from 'src/app/interfaces/metadata';
+import { Meta } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,6 @@ export class AlunoService {
 
   public GetAlunos (pageNumber: number, pageSize: number) {
     const token = this.cookie.getToken();
-    console.log(token);
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -25,6 +27,20 @@ export class AlunoService {
       .set("pageSize", pageSize.toString());
 
     return this.http.get(apiUrl + "Usuario/alunos", { params, headers });
+  }
+
+  public GetAlunoByName(nome: string, pageNumber: number, pageSize: number): Observable<MetadataResponse> {
+    const token = this.cookie.getToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const params = new HttpParams()
+      .set("pageNumber", pageNumber.toString())
+      .set("pageSize", pageSize.toString())
+      .set("nome", nome);
+
+    return this.http.get<MetadataResponse>(apiUrl + "Usuario/alunos/nome", { params, headers });
+
   }
 
   public PostAluno (aluno: Aluno) {

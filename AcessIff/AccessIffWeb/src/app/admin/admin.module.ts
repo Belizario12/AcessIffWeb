@@ -18,6 +18,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { CalendarioComponent } from './pages/calendario/calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { EmissaoAlertasComponent } from './pages/emissao-alertas/emissao-alertas.component';
+import { HorarioComponent } from './pages/horario/horario.component';
+import { QrCodeComponent } from './pages/qr-code/qr-code.component';
 
 
 @NgModule({
@@ -30,6 +35,10 @@ import { MatInputModule } from '@angular/material/input';
     FuncionarioComponent,
     EditModalComponent,
     DeleteModalComponent,
+    CalendarioComponent,
+    EmissaoAlertasComponent,
+    HorarioComponent,
+    QrCodeComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +52,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatAutocompleteModule,
     MatInputModule,
+    FullCalendarModule,
   ]
 })
 export class AdminModule { }

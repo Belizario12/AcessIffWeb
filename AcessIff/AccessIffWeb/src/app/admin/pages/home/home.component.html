@@ -10,21 +10,21 @@
           <img src="../../../../assets/carteira-de-identidade.png" alt="alunoImg" class="menuImg">
           <p class="menuText">Cadastrar Funcionário</p>
         </button>
-        <button class="menuButton">
+        <button class="menuButton" (click)="redirect('calendario')">
           <img src="../../../../assets/variante-de-calendario-para-desktop-spring.png" alt="alunoImg" class="menuImg">
           <p class="menuText">Calendário Acadêmico</p>
         </button>
-        <button class="menuButton">
+        <button class="menuButton" (click)="redirect('emitir-alertas')">
           <img src="../../../../assets/sinal-de-aviso.png" alt="alunoImg" class="menuImg">
           <p class="menuText">Emitir Alerta</p>
         </button>
-        <button class="menuButton">
+        <button class="menuButton" (click)="redirect('horario')">
           <img src="../../../../assets/relogio-com-sentido-horario.png" alt="alunoImg" class="menuImg">
           <p class="menuText">Cadastrar Horário</p>
         </button>
-        <button class="menuButton">
-          <img src="../../../../assets/relatorio.png" alt="alunoImg" class="menuImg">
-          <p class="menuText">Relatórios</p>
+        <button class="menuButton" (click)="redirect('qrcode')">
+          <img src="../../../../assets/qrcodeSvg.svg" alt="alunoImg" class="menuImg">
+          <p class="menuText">Gerar QR Code</p>
         </button>
       </div>
     </div>

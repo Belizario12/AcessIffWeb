@@ -22,6 +22,7 @@ export class DeleteModalComponent {
       next: (result: any) => {
         this.toastr.success(result.message, "Sucesso!");
         this.matDialogRef.close();
+        window.location.reload();
       },
       error: (error: any) => {
         this.toastr.error(error.error.message, "Erro!");

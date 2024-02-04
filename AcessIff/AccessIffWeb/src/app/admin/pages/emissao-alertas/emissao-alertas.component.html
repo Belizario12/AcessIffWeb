@@ -1,0 +1,34 @@
+<div class="alerta">
+  <div class="alertaAlign">
+    <div class="alertaImgContainer">
+      <img src="../../../../assets/alerta.png" alt="alertaImg" class="alertaImg">
+    </div>
+    <div class="alertaContent">
+      <div class="alertaTitle">
+        <h3>Emitir Alerta</h3>
+      </div>
+      <div class="alertaForm">
+        <form [formGroup]="alertaForm" class="alertaGroup">
+          <mat-form-field color="accent" appearance="outline" class="data">
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="title" required />
+            <mat-error *ngIf="alertaForm.controls['title'].hasError('required')">
+              O título é obrigatório!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field color="accent" appearance="outline" class="data">
+            <mat-label>Mensagem</mat-label>
+            <textarea matInput formControlName="message" required></textarea>
+            <mat-error *ngIf="alertaForm.controls['message'].hasError('required')">
+              A mensagem é obrigatória!
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="alertaButton">
+        <button class="btnBack" (click)="back()">Voltar</button>
+        <button class="btnSave" (click)="save()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

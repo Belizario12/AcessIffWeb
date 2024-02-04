@@ -3,6 +3,10 @@ import { AdminComponent } from './admin.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AlunoComponent } from './pages/aluno/aluno.component';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
+import { CalendarioComponent } from './pages/calendario/calendario.component';
+import { EmissaoAlertasComponent } from './pages/emissao-alertas/emissao-alertas.component';
+import { QrCodeComponent } from './pages/qr-code/qr-code.component';
+import { HorarioComponent } from './pages/horario/horario.component';
 
 const routes: Routes = [
   {
@@ -26,6 +30,22 @@ const routes: Routes = [
         path: 'funcionario',
         component: FuncionarioComponent,
       },
+      {
+        path: 'calendario',
+        component: CalendarioComponent,
+      },
+      {
+        path: 'emitir-alertas',
+        component: EmissaoAlertasComponent,
+      },
+      {
+        path: 'qrcode',
+        component: QrCodeComponent,
+      },
+      {
+        path: 'horario',
+        component: HorarioComponent,
+      }
     ]
   },
 ];

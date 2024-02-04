@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .matDialogTitle {
@@ -20,8 +21,7 @@
 }
 
 .formContainer {
-  width: 600px !important;
-  margin: 10px 0px;
+  margin: 10px 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;

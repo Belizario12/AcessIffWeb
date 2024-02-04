@@ -36,7 +36,7 @@ $indigo-palette: (
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $AccessIffWeb-primary: mat.define-palette(mat.$indigo-palette);
-$AccessIffWeb-accent: mat.define-palette(mat.$indigo-palette, 700, 800, 900);
+$AccessIffWeb-accent: mat.define-palette(mat.$green-palette, 700, 800, 900);
 
 // The warn palette is optional (defaults to red).
 $AccessIffWeb-warn: mat.define-palette(mat.$red-palette);

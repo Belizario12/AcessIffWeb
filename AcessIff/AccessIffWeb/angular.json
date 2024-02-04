@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.scss",
               "node_modules/ngx-spinner/animations/square-loader.css",
               "node_modules/ngx-toastr/toastr.css"
@@ -95,6 +96,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.scss",
               "node_modules/ngx-spinner/animations/square-loader.css",
               "node_modules/ngx-toastr/toastr.css"
@@ -104,5 +106,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

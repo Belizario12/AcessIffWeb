@@ -1,5 +1,6 @@
 export interface Usuario {
   id?: string,
+  matricula?: string,
   nome: string,
   email: string,
   senha: string,

@@ -7,6 +7,7 @@ import { UnitOfControllerService } from 'src/app/controllers/UnitOfController/un
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalComponent } from '../../components/edit-modal/edit-modal.component';
 import { DeleteModalComponent } from '../../components/delete-modal/delete-modal.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-aluno',
@@ -20,6 +21,7 @@ export class AlunoComponent {
   totalPages = 1;
   pageSize = 15;
   dataSource = new MatTableDataSource<any>();
+  pesquisaControl = new FormControl();
   displayedColumns: string[] = [
     'cpf',
     'name',
@@ -30,7 +32,7 @@ export class AlunoComponent {
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
-    private controler: UnitOfControllerService,
+    private controller: UnitOfControllerService,
     private toastr: ToastrService,
     private dialog: MatDialog,
   ) {}
@@ -39,8 +41,28 @@ export class AlunoComponent {
     this.loadAlunos(this.currentPage, this.pageSize);
   }
 
+  applyFilter(pesquisaValue: FormControl) {
+    if (pesquisaValue.value === '') {
+      this.loadAlunos(this.currentPage, this.pageSize);
+    } else {
+      this.controller.alunoController
+        .GetAlunoByName(pesquisaValue.value.trim().toLowerCase(), this.currentPage=1, this.pageSize)
+        .subscribe({
+          next: (data) => {
+            console.log(data)
+            const users = data.metadata.data;
+            this.dataSource.data = users;
+          },
+          error: (error) => {
+            console.log(error)
+            this.dataSource = new MatTableDataSource<any>();
+          },
+        });
+    }
+  }
+
   loadAlunos(pageNumber: number, pageSize: number) {
-    this.controler.alunoController.GetAlunos(pageNumber, pageSize).subscribe({
+    this.controller.alunoController.GetAlunos(pageNumber, pageSize).subscribe({
       next: (result: any) => {
         this.dataSource.data = result.metadata.data;
       },
@@ -63,7 +85,7 @@ export class AlunoComponent {
   loadNextPage() {
     if((this.totalPages / this.pageSize) > this.currentPage) {
       this.currentPage++;
-      //this.loadUsers(Number(this.selectedActivateFilter!), this.currentPage, this.pageSize);
+      this.loadAlunos(this.currentPage, this.pageSize);
     }
   }
 
@@ -84,6 +106,8 @@ export class AlunoComponent {
       }
     }) : null;
     type === 'Create' ? this.dialog.open(EditModalComponent, {
+      width: '690px',
+      height: '500px',
       data: {
         type: 'Create',
         cargo: "aluno",
