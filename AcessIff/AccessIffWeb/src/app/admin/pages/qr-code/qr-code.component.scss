@@ -1,0 +1,132 @@
+@import "../../../../styles.scss";
+
+.qrcodeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88%;
+  width: 100%;
+  padding: 20px;
+}
+
+.qrcodeLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+}
+
+.qrcodeImg {
+  width: 600px;
+}
+
+.qrcodeRight {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+  margin-bottom: 50px;
+}
+
+.qrcodeTitle {
+  font-size: 50px;
+  font-weight: 500;
+  margin-bottom: 50px;
+  color: $green;
+}
+
+.qrcodeForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.data {
+  width: 500px;
+}
+
+.qrcodeButton {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btnSave {
+  --color: $green;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2em;
+  line-height: 1.5em;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid $green;
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: $green;
+}
+
+.btnSave:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: $green;
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.btnSave:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.btnSave:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.btnSave:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.btnSave:active:before {
+  background: $green;
+  transition: background 0s;
+}
+
+.btnBack {
+  --secondary-color: #fff;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 6px;
+  color: var(--secondary-color);
+  padding: 0.7em 1.8em;
+  background: $green;
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.btnBack:hover {
+  background-color: $background;
+  color: $green;
+  cursor: pointer;
+}
