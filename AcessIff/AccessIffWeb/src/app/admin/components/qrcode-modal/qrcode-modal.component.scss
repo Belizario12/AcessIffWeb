@@ -1,0 +1,98 @@
+@import '../../../../styles.scss';
+
+.qrCodeModal {
+  width: 100%;
+  height: 100%;
+}
+
+.matDialogTitle {
+  background-color: $green;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.text {
+  margin: 0px 20px;
+  color: #fff;
+  font-size: 30px;
+}
+
+.qrCode {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.qrCodeAlign {
+  margin-top: 50px;
+  width: 92%;
+  height: 60%;
+  display: flex;
+  padding: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qrCodeInformation {
+  width: 50%;
+}
+
+.qrCodeTitle {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: $green;
+}
+
+.qrCodeData {
+  margin: 50px 0px;
+}
+
+.qrCodeDataText {
+  font-size: 25px;
+  color: $green;
+}
+
+.qrCodeButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnBack {
+  border: 1px solid $green;
+  background-color: #fff;
+  color: $green;
+  font-size: 18px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+    background-color: $green;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.btnSave {
+  border: none;
+  background-color: $green;
+  color: #fff;
+  font-size: 18px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+  &:hover {
+    color: $green;
+    border: 1px solid $green;
+    background-color: #fff;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}

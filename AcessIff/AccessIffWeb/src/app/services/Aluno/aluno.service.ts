@@ -40,7 +40,16 @@ export class AlunoService {
       .set("nome", nome);
 
     return this.http.get<MetadataResponse>(apiUrl + "Usuario/alunos/nome", { params, headers });
+  }
 
+  public GetAlunoByMatricula (matricula: string): Observable<MetadataResponse> {
+    const token = this.cookie.getToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const params = new HttpParams().set("matricula", matricula);
+
+    return this.http.get<MetadataResponse>(apiUrl + "Usuario/aluno", { params, headers });
   }
 
   public PostAluno (aluno: Aluno) {

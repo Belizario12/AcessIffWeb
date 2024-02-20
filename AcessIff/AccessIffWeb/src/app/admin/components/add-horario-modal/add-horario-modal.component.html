@@ -1,0 +1,53 @@
+<div class="modalHorario">
+  <div class="matDialogTitle">
+    <p matDialogTitle >Adicionar Horário</p>
+  </div>
+  <div class="formContent">
+    <form [formGroup]="horarioForm" class="formContainer">
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Disciplina</mat-label>
+        <input matInput formControlName="disciplina" required />
+        <mat-error *ngIf="horarioForm.controls['disciplina'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Dia da Semana</mat-label>
+        <mat-select formControlName="dia" placeholder="Selecione o dia da semana">
+          <mat-option value="segunda">Segunda-Feira</mat-option>
+          <mat-option value="terca">Terça-Feira</mat-option>
+          <mat-option value="quarta">Quarta-Feira</mat-option>
+          <mat-option value="quinta">Quinta-Feira</mat-option>
+          <mat-option value="sexta">Sexta-Feira</mat-option>
+        </mat-select>
+        <mat-error *ngIf="horarioForm.controls['dia'].hasError('required')">
+          O dia é obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Horario Início</mat-label>
+        <input matInput formControlName="horaInicio" required>
+        <mat-error *ngIf="horarioForm.controls['horaInicio'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+        <mat-error *ngIf="horarioForm.controls['horaInicio'].hasError('invalidTimeFormat')">
+          O horário deve seguir o formato HH:MM.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Horário Final</mat-label>
+        <input matInput type="text" formControlName="horaFim">
+        <mat-error *ngIf="horarioForm.controls['horaFim'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+        <mat-error *ngIf="horarioForm.controls['horaFim'].hasError('invalidTimeFormat')">
+          O horário deve seguir o formato HH:MM.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="saveHorario()">Salvar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>

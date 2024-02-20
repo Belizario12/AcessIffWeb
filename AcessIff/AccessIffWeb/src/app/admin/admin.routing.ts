@@ -7,6 +7,9 @@ import { CalendarioComponent } from './pages/calendario/calendario.component';
 import { EmissaoAlertasComponent } from './pages/emissao-alertas/emissao-alertas.component';
 import { QrCodeComponent } from './pages/qr-code/qr-code.component';
 import { HorarioComponent } from './pages/horario/horario.component';
+import { ListaHorariosComponent } from './pages/lista-horarios/lista-horarios.component';
+import { ListaAlertasComponent } from './pages/lista-alertas/lista-alertas.component';
+import { TurmasComponent } from './pages/turmas/turmas.component';
 
 const routes: Routes = [
   {
@@ -45,6 +48,18 @@ const routes: Routes = [
       {
         path: 'horario',
         component: HorarioComponent,
+      },
+      {
+        path: 'lista-horarios',
+        component: ListaHorariosComponent,
+      },
+      {
+        path: 'lista-alertas',
+        component: ListaAlertasComponent,
+      },
+      {
+        path: 'turmas',
+        component: TurmasComponent,
       }
     ]
   },

@@ -18,16 +18,29 @@ export class DeleteModalComponent {
   ) { }
 
   save() {
-    this.controller.alunoController.DeleteAluno(this.data.element.id).subscribe({
-      next: (result: any) => {
-        this.toastr.success(result.message, "Sucesso!");
-        this.matDialogRef.close();
-        window.location.reload();
-      },
-      error: (error: any) => {
-        this.toastr.error(error.error.message, "Erro!");
-      }
-    })
+    if(this.data.type === "alerta") {
+      this.controller.alertaController.deleteAlerta(this.data.element.id).subscribe({
+        next: (result: any) => {
+          this.toastr.success(result.message, "Sucesso!");
+          this.matDialogRef.close();
+          window.location.reload();
+        },
+        error: (error: any) => {
+          this.toastr.error(error.error.message, "Erro!");
+        }
+      })
+    } else {
+      this.controller.alunoController.DeleteAluno(this.data.element.id).subscribe({
+        next: (result: any) => {
+          this.toastr.success(result.message, "Sucesso!");
+          this.matDialogRef.close();
+          window.location.reload();
+        },
+        error: (error: any) => {
+          this.toastr.error(error.error.message, "Erro!");
+        }
+      })
+    }
   }
 
   fechar() {

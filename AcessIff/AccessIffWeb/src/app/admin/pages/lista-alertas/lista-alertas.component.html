@@ -1,0 +1,61 @@
+<div class="alerta">
+  <div class="header">
+    <div class="voltar">
+      <button class="btnVoltar" (click)="back()"><mat-icon>keyboard_backspace</mat-icon></button>
+    </div>
+    <div class="title">
+      Alertas
+    </div>
+  </div>
+  <div class="buttons">
+    <mat-form-field class="searchButton" color="accent" appearance="outline">
+      <mat-label>Pesquisa:</mat-label>
+      <mat-icon matSuffix class="searchIcon">search</mat-icon>
+      <input matInput (keyup)="applyFilter(pesquisaControl)" [formControl]="pesquisaControl">
+    </mat-form-field>
+    <div class="cadastrarAlerta">
+      <button class="btnCadastrar" (click)="redirect()"><mat-icon>person_add</mat-icon></button>
+    </div>
+  </div>
+  <div class="alertaContainer">
+    <div class="tableShadow">
+      <div class="alertaTable" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+        [scrollWindow]="false" (scrolled)="loadNextPage()">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+
+          <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by cpf">
+              Titulo
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+              Descrição
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>
+              Editar
+            </th>
+            <td mat-cell *matCellDef="let element"><button class="tableButtons"
+                (click)="openModal('Edit', element)"><mat-icon>edit</mat-icon></button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>
+              Deletar
+            </th>
+            <td mat-cell *matCellDef="let element"><button class="tableButtons"
+                (click)="openModal('Delete', element)"><mat-icon>delete</mat-icon></button></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>

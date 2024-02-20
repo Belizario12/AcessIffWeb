@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -11,12 +11,14 @@ import { Usuario } from 'src/app/interfaces/usuario';
   templateUrl: './edit-modal.component.html',
   styleUrls: ['./edit-modal.component.scss']
 })
-export class EditModalComponent {
+export class EditModalComponent implements OnInit {
   showTemplate: string = "Create";
   alunoForm!: FormGroup;
   funcionarioForm!: FormGroup;
+  alertaForm!: FormGroup;
   alunoObj: Aluno = this.controller.alunoController.getAlunoEmpty();
   funcionarioObj: Usuario = this.controller.usuarioController.returnUsuarioEmpty();
+  opcoes!: any[];
 
   constructor(
     public dialogRef: MatDialogRef<EditModalComponent>,
@@ -25,8 +27,6 @@ export class EditModalComponent {
     private controller: UnitOfControllerService,
     private toastr: ToastrService,
   ) {
-    console.log(data);
-
     if (data.cargo === 'funcionario') {
       this.funcionarioForm = this.fb.group({
         matricula: [data.element && data.element.matricula || '', Validators.required],
@@ -34,7 +34,8 @@ export class EditModalComponent {
         email: [data.element && data.element.email || '', Validators.required],
         senha: [data.element && data.element.senha || '', Validators.required],
       })
-    } else {
+    }
+    if(data.cargo === 'aluno') {
       this.alunoForm = this.fb.group({
         matricula: [data.element && data.element.aluno.matricula || '', Validators.required],
         nome: [data.element && data.element.nome || '', Validators.required],
@@ -46,9 +47,29 @@ export class EditModalComponent {
         genero: [data.element && data.element.aluno.genero || ''],
         endereco: [data.element && data.element.aluno.endereco || '', Validators.required],
         telefone: [data.element && data.element.aluno.telefone || '', Validators.required],
+        turma: [data.element && data.element.aluno.turma || '', Validators.required],
       })
     }
 
+    if(data.type === "alerta") {
+      this.alertaForm = this.fb.group({
+        titulo: [data.element && data.element.titulo || '', Validators.required],
+        descricao: [data.element && data.element.descricao || '', Validators.required],
+      })
+    }
+  }
+
+  ngOnInit(): void {
+    if(this.data.cargo === 'aluno') {
+      this.controller.turmaController.getTurmas(1, 100).subscribe({
+        next: (result: any) => {
+          this.opcoes = result.metadata.data;
+        },
+        error: (error: any) => {
+          this.toastr.error("Não foi possível carregar as turmas!", "Erro!");
+        }
+      })
+    }
   }
 
   fechar(): void {
@@ -141,5 +162,19 @@ export class EditModalComponent {
         }
       })
     }
+  }
+
+  saveAlerta(): void {
+    this.controller.alertaController.putAlerta(this.alertaForm.value, this.data.element.id).subscribe({
+      next: (result: any) => {
+        this.toastr.success(result.message, "Sucesso!");
+        this.dialogRef.close();
+        window.location.reload();
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.toastr.error("Não foi possível atualizar o alerta!", "Erro!");
+      }
+    })
   }
 }

@@ -13,25 +13,11 @@
             A matricula é obrigatória!
           </mat-error>
         </mat-form-field>
-        <mat-form-field color="accent" appearance="outline" class="data">
-          <mat-label>Nome</mat-label>
-          <input matInput formControlName="nome" required />
-          <mat-error *ngIf="qrcodeForm.controls['nome'].hasError('required')">
-            A nome é obrigatória!
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field color="accent" appearance="outline" class="data">
-          <mat-label>Curso</mat-label>
-          <input matInput formControlName="curso" required />
-          <mat-error *ngIf="qrcodeForm.controls['curso'].hasError('required')">
-            O curso é obrigatório!
-          </mat-error>
-        </mat-form-field>
       </div>
     </form>
     <div class="qrcodeButton">
       <button class="btnBack" (click)="back()">Voltar</button>
-      <button class="btnSave" (click)="save()">Salvar</button>
+      <button class="btnSave" (click)="save()">Gerar</button>
     </div>
   </div>
 </div>

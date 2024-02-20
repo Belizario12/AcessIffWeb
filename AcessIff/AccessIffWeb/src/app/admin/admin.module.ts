@@ -24,6 +24,12 @@ import { EmissaoAlertasComponent } from './pages/emissao-alertas/emissao-alertas
 import { HorarioComponent } from './pages/horario/horario.component';
 import { QrCodeComponent } from './pages/qr-code/qr-code.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ListaAlertasComponent } from './pages/lista-alertas/lista-alertas.component';
+import { ListaHorariosComponent } from './pages/lista-horarios/lista-horarios.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AddHorarioModalComponent } from './components/add-horario-modal/add-horario-modal.component';
+import { TurmasComponent } from './pages/turmas/turmas.component';
+import { TurmasModalComponent } from './components/turmas-modal/turmas-modal.component';
 
 
 @NgModule({
@@ -40,6 +46,11 @@ import { MatSelectModule } from '@angular/material/select';
     EmissaoAlertasComponent,
     HorarioComponent,
     QrCodeComponent,
+    ListaAlertasComponent,
+    ListaHorariosComponent,
+    AddHorarioModalComponent,
+    TurmasComponent,
+    TurmasModalComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +66,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     FullCalendarModule,
     MatSelectModule,
+    MatTabsModule,
   ]
 })
 export class AdminModule { }

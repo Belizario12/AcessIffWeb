@@ -104,7 +104,7 @@ export class FuncionarioComponent {
       }) : null;
     type === 'Delete' ? this.dialog.open(DeleteModalComponent, {
       data: {
-        type: 'Delete',
+        type: 'funcionario',
         cargo: "funcionario",
         element: element,
       }

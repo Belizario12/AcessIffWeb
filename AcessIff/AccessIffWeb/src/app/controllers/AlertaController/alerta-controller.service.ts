@@ -20,6 +20,10 @@ export class AlertaControllerService {
     return this.context.alertaService.getAlertaById(id);
   }
 
+  getAlertaByNome(nome: string, pageNumber: Number, pageSize: Number): Observable<MetadataResponse> {
+    return this.context.alertaService.getAlertaByNome(nome, pageNumber, pageSize);
+  }
+
   postAlerta(alerta: any): Observable<MetadataRequest> {
     return this.context.alertaService.postAlerta(alerta);
   }

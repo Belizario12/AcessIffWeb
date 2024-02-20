@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -27,6 +27,7 @@ export class LoginComponent {
     })
   }
 
+  @HostListener("document:keydown.enter")
   login() {
     /^[0-9]+$/.test(this.formLogin.get('user')?.value)
       ? this.loginObj.matricula = this.formLogin.get('user')?.value
@@ -37,14 +38,12 @@ export class LoginComponent {
     this.controller.loginController.Login(this.loginObj).subscribe({
       next: (result: any) => {
         this.controller.cookieController.setCookie(result.metadata.Data);
-        console.log(this.controller.cookieController.getCookie());
         this.toastr.success("Login efetuado com sucesso!", "Sucesso");
         this.route.navigate(['/admin']);
 
       },
       error: (error) => {
-        console.log(error);
-        this.toastr.error("Erro ao efetuar login!", "Erro");
+        this.toastr.error(error.message, "Erro");
       }
     })
 }

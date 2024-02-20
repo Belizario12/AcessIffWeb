@@ -22,6 +22,10 @@ export class AlunoControllerService {
     return this.context.alunoService.GetAlunoByName(nome, pageNumber, pageSize);
   }
 
+  public GetAlunoByMatricula(matricula: string): Observable<MetadataResponse> {
+    return this.context.alunoService.GetAlunoByMatricula(matricula);
+  }
+
   public PostAluno(aluno: any): any {
     return this.context.alunoService.PostAluno(aluno);
   }

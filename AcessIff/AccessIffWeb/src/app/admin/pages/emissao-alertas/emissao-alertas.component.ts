@@ -36,7 +36,7 @@ export class EmissaoAlertasComponent {
         next: (result) => {
           console.log(result);
           this.toast.success('Alerta emitido com sucesso!', 'Sucesso');
-          this.alertaForm.reset();
+          window.history.back();
         },
         error: (error) => {
           console.log(error);

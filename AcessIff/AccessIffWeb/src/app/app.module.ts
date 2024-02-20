@@ -14,7 +14,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { SpinnerInterceptor } from './utils/spinnerInterceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminModule } from './admin/admin.module';
-import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [

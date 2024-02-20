@@ -14,10 +14,12 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field color="accent" appearance="outline" class="data">
-          <mat-label>Curso</mat-label>
-          <input matInput formControlName="curso" required />
-          <mat-error *ngIf="horarioForm.controls['curso'].hasError('required')">
-            O curso é obrigatório!
+          <mat-label>Turma</mat-label>
+          <mat-select formControlName="turma" placeholder="Selecione a turma.">
+            <mat-option *ngFor="let option of options" [value]="option.nome">{{ option.nome }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="horarioForm.controls['turma'].hasError('required')">
+            A turma é obrigatória!
           </mat-error>
         </mat-form-field>
         <mat-form-field color="accent" appearance="outline" class="data">
@@ -39,12 +41,18 @@
           <mat-error *ngIf="horarioForm.controls['inicio'].hasError('required')">
             O horário de início é obrigatório!
           </mat-error>
+          <mat-error *ngIf="horarioForm.controls['inicio'].hasError('invalidTimeFormat')">
+            O horário deve seguir o formato HH:MM.
+          </mat-error>
         </mat-form-field>
         <mat-form-field color="accent" appearance="outline" class="data">
           <mat-label>Horário de término</mat-label>
           <input matInput type="time" formControlName="termino" required />
           <mat-error *ngIf="horarioForm.controls['termino'].hasError('required')">
             O horário de término é obrigatório!
+          </mat-error>
+          <mat-error *ngIf="horarioForm.controls['termino'].hasError('invalidTimeFormat')">
+            O horário deve seguir o formato HH:MM.
           </mat-error>
         </mat-form-field>
       </div>

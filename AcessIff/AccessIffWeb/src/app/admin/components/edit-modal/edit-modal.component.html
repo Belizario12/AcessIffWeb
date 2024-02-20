@@ -69,6 +69,15 @@
           Campo obrigatório!
         </mat-error>
       </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Turma</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let opcao of opcoes" [value]="opcao.nome">{{ opcao.nome }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="alunoForm.controls['turma'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
     </form>
   </div>
   <div class="buttons">
@@ -123,6 +132,37 @@
   </div>
   <div class="buttons">
     <button class="confirmButton" (click)="saveFuncionario()">Salvar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>
+
+<div class="alertas" *ngIf="data.type === 'alerta'">
+  <div class="matDialogTitle">
+    <p matDialogTitle>Editar Alerta</p>
+  </div>
+  <div class="formContent">
+    <form [formGroup]="alertaForm" class="formContainer">
+      <div class="firstLine">
+        <mat-form-field color="accent" appearance="outline" class="dataAlerta">
+          <mat-label>Titulo</mat-label>
+          <input matInput formControlName="titulo" required />
+          <mat-error *ngIf="alertaForm.controls['titulo'].hasError('required')">
+            Campo obrigatório!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="outline" class="dataAlerta">
+          <mat-label>Descricao</mat-label>
+          <textarea matInput formControlName="descricao" required></textarea>
+          <mat-error *ngIf="alertaForm.controls['descricao'].hasError('required')">
+            Campo obrigatório!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="saveAlerta()">Salvar</button>
     <button class="cancelButton" (click)="fechar()">Cancelar</button>
   </div>
 </div>

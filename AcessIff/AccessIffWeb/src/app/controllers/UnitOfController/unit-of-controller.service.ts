@@ -4,6 +4,8 @@ import { CookieControllerService } from '../CookieController/cookie-controller.s
 import { AlunoControllerService } from '../AlunoController/aluno-controller.service';
 import { UsuarioControllerService } from '../UsuarioController/usuario-controller.service';
 import { AlertaControllerService } from '../AlertaController/alerta-controller.service';
+import { TurmaControllerService } from '../TurmaController/turma-controller.service';
+import { HorarioService } from '../HorarioController/horario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +18,7 @@ export class UnitOfControllerService {
     public alunoController: AlunoControllerService,
     public usuarioController: UsuarioControllerService,
     public alertaController: AlertaControllerService,
+    public turmaController: TurmaControllerService,
+    public horarioController: HorarioService,
   ) { }
 }

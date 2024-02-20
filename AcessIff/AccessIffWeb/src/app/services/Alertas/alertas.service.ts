@@ -32,6 +32,16 @@ export class AlertasService {
     return this.http.get<MetadataResponse>(apiUrl + `Alertas/${id}`, { headers });
   }
 
+  getAlertaByNome(nome: string, pageNumber: Number, pageSize: Number): Observable<MetadataResponse> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.cookie.getToken()}`);
+
+    const params = new HttpParams()
+      .append('pageNumber', pageNumber.toString())
+      .append('pageSize', pageSize.toString())
+
+    return this.http.get<MetadataResponse>(apiUrl + `Alertas/nome/${nome}`, { headers, params });
+  }
+
   postAlerta(alerta: CreateAlerta): Observable<MetadataRequest> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.cookie.getToken()}`);
 

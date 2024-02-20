@@ -1,0 +1,21 @@
+<div class="qrCodeModal" id="content">
+  <div class="matDialogTitle">
+    <p class="text">Carteira do Aluno</p>
+  </div>
+  <div class="qrCodeAlign">
+    <div class="qrCode">
+      <img [src]="qrCodeImage" alt="QR Code" class="qrCodeImg">
+    </div>
+    <div class="qrCodeInformation">
+      <h2 class="qrCodeTitle">Nome: {{ data.nome }}</h2>
+      <div class="qrCodeData">
+        <p class="qrCodeDataText">Matrícula: {{ data.matricula }}</p>
+        <p class="qrCodeDataText">Curso: {{ data.curso }}</p>
+      </div>
+      <div class="qrCodeButton">
+        <button class="btnBack" (click)="back()">Voltar</button>
+        <button class="btnSave" (click)="generatePDF()">Imprimir</button>
+      </div>
+    </div>
+  </div>
+</div>

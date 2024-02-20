@@ -1,0 +1,37 @@
+<div class="modalTurma" *ngIf="data.type != 'Delete'">
+  <div class="matDialogTitle">
+    <p matDialogTitle *ngIf="data.type === 'Create'">Cadastrar Turma</p>
+    <p matDialogTitle *ngIf="data.type === 'Edit'">Editar Turma</p>
+  </div>
+  <div class="formContent">
+    <form [formGroup]="turmaForm" class="formContainer">
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" required />
+        <mat-error *ngIf="turmaForm.controls['nome'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="save()">Salvar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>
+
+
+<div class="modalTurma" *ngIf="data.type == 'Delete'">
+  <div class="matDialogTitle">
+    <p matDialogTitle *ngIf="data.type === 'Create'">Cadastrar Turma</p>
+    <p matDialogTitle *ngIf="data.type === 'Edit'">Editar Turma</p>
+    <p matDialogTitle *ngIf="data.type === 'Delete'">Deletar Turma</p>
+  </div>
+  <div class="formContent">
+    <h2>Deseja realmente deletar esta turma?</h2>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="save()">Salvar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>

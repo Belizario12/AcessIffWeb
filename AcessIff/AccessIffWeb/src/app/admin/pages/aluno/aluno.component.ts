@@ -100,7 +100,7 @@ export class AlunoComponent {
       }) : null;
     type === 'Delete' ? this.dialog.open(DeleteModalComponent, {
       data: {
-        type: 'Delete',
+        type: 'aluno',
         cargo: "aluno",
         element: element,
       }
