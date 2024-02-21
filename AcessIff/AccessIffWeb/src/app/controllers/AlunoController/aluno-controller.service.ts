@@ -51,6 +51,7 @@ export class AlunoControllerService {
       senha: "",
       telefone: "",
       foto: "",
+      turmaId: "",
     }
     return aluno;
   }

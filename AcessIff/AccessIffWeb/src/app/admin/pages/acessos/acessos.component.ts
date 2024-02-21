@@ -24,6 +24,7 @@ export class AcessosComponent {
     'matricula',
     'name',
     'email',
+    'relatorio'
   ];
 
   constructor(
@@ -34,16 +35,16 @@ export class AcessosComponent {
   ) {}
 
   ngOnInit(): void {
-    this.loadFuncionarios(this.currentPage, this.pageSize);
+    this.loadAlunos(this.currentPage, this.pageSize);
   }
 
   applyFilter(pesquisaValue: FormControl) {
     if (pesquisaValue.value === '') {
-      this.loadFuncionarios(this.currentPage, this.pageSize);
+      this.loadAlunos(this.currentPage, this.pageSize);
     } else {
       console.log(pesquisaValue.value.trim().toLowerCase())
-      this.controller.usuarioController
-        .getUsuarioByName(pesquisaValue.value.trim().toLowerCase(), this.currentPage=1, this.pageSize)
+      this.controller.alunoController
+      .GetAlunoByName(pesquisaValue.value.trim().toLowerCase(), this.currentPage=1, this.pageSize)
         .subscribe({
           next: (data: any) => {
             console.log(data)
@@ -58,8 +59,8 @@ export class AcessosComponent {
     }
   }
 
-  loadFuncionarios(pageNumber: number, pageSize: number) {
-    this.controller.usuarioController.getUsuario(pageNumber, pageSize).subscribe({
+  loadAlunos(pageNumber: number, pageSize: number) {
+    this.controller.alunoController.GetAlunos(pageNumber, pageSize).subscribe({
       next: (result: any) => {
         console.log(result);
         this.dataSource.data = result.metadata.data;
@@ -80,11 +81,9 @@ export class AcessosComponent {
     }
   }
 
-  loadNextPage() {
-    if((this.totalPages / this.pageSize) > this.currentPage) {
-      this.currentPage++;
-      //this.loadUsers(Number(this.selectedActivateFilter!), this.currentPage, this.pageSize);
-    }
+  openReport(element: any) {
+    console.log(element)
+
   }
 
   back() {

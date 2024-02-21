@@ -18,7 +18,8 @@ export class EditModalComponent implements OnInit {
   alertaForm!: FormGroup;
   alunoObj: Aluno = this.controller.alunoController.getAlunoEmpty();
   funcionarioObj: Usuario = this.controller.usuarioController.returnUsuarioEmpty();
-  opcoes!: any[];
+  opcoes: any[] = [];
+  hide: boolean = true;
 
   constructor(
     public dialogRef: MatDialogRef<EditModalComponent>,
@@ -70,6 +71,19 @@ export class EditModalComponent implements OnInit {
         }
       })
     }
+
+    if(this.data.type === "Edit" && this.data.cargo === 'aluno') {
+      this.controller.alunoController.GetAlunoByMatricula(this.data.element.matricula).subscribe({
+        next: (response: any) => {
+          this.alunoForm.get('turma')?.setValue(response.metadata.data.turma.nome);
+          this.alunoObj.turmaId = response.metadata.data.turma.id;
+        },
+        error: (error: any) => {
+          console.log(error);
+          this.toastr.error("Não foi possível carregar as turmas!", "Erro!");
+        }
+      })
+    }
   }
 
   fechar(): void {
@@ -88,7 +102,7 @@ export class EditModalComponent implements OnInit {
       this.alunoObj.genero = this.alunoForm.get('genero')?.value;
       this.alunoObj.endereco = this.alunoForm.get('endereco')?.value;
       this.alunoObj.telefone = this.alunoForm.get('telefone')?.value;
-      console.log(this.alunoObj);
+      this.alunoObj.turmaId = this.opcoes.find((turma: any) => turma.nome === this.alunoForm.get('turma')?.value).id;
       this.controller.alunoController.PostAluno(this.alunoObj).subscribe({
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");

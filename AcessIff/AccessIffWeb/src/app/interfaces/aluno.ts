@@ -11,4 +11,5 @@ export interface Aluno {
   telefone: string,
   rg: string,
   foto: string,
+  turmaId: string,
 }

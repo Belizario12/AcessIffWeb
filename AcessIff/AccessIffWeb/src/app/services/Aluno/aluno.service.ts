@@ -49,7 +49,7 @@ export class AlunoService {
 
     const params = new HttpParams().set("matricula", matricula);
 
-    return this.http.get<MetadataResponse>(apiUrl + "Usuario/aluno", { params, headers });
+    return this.http.get<MetadataResponse>(apiUrl + "Usuario/alunos/matricula", { params, headers });
   }
 
   public PostAluno (aluno: Aluno) {

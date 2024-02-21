@@ -1,4 +1,4 @@
-<div class="funcionario">
+<div class="acesso">
   <div class="header">
     <div class="voltar">
       <button class="btnVoltar" (click)="back()"><mat-icon>keyboard_backspace</mat-icon></button>
@@ -14,14 +14,9 @@
       </mat-form-field>
     </div>
   </div>
-  <div class="funcionarioContainer">
+  <div class="acessoContainer">
     <div class="tableShadow">
-      <div class="funcionarioTable"
-        infinite-scroll
-        [infiniteScrollDistance]="2"
-        [infiniteScrollThrottle]="300"
-        [scrollWindow]="false"
-        (scrolled)="loadNextPage()">
+      <div class="acessoTable">
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
 
           <ng-container matColumnDef="matricula">
@@ -43,6 +38,13 @@
               E-mail
             </th>
             <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="relatorio">
+            <th mat-header-cell *matHeaderCellDef>
+              Relatório
+            </th>
+            <td mat-cell *matCellDef="let element"><button class="tableButtons" (click)="openReport(element)"><mat-icon>assignment</mat-icon></button></td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
