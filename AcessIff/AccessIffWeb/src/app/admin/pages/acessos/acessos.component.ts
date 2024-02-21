@@ -6,6 +6,7 @@ import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { UnitOfControllerService } from 'src/app/controllers/UnitOfController/unit-of-controller.service';
+import { RelatorioAcessosComponent } from '../../components/relatorio-acessos/relatorio-acessos.component';
 
 @Component({
   selector: 'app-acessos',
@@ -36,6 +37,7 @@ export class AcessosComponent {
 
   ngOnInit(): void {
     this.loadAlunos(this.currentPage, this.pageSize);
+    this.openReport(this.dataSource.data[0]);
   }
 
   applyFilter(pesquisaValue: FormControl) {
@@ -82,8 +84,13 @@ export class AcessosComponent {
   }
 
   openReport(element: any) {
-    console.log(element)
-
+    this.dialog.open(RelatorioAcessosComponent, {
+      width: '60%',
+      height: '80%',
+      data: {
+        element: element
+      }
+    })
   }
 
   back() {

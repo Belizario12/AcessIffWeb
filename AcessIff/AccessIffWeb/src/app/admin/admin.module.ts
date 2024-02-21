@@ -32,6 +32,7 @@ import { TurmasComponent } from './pages/turmas/turmas.component';
 import { TurmasModalComponent } from './components/turmas-modal/turmas-modal.component';
 import { CalendarioModalComponent } from './components/calendario-modal/calendario-modal.component';
 import { AcessosComponent } from './pages/acessos/acessos.component';
+import { RelatorioAcessosComponent } from './components/relatorio-acessos/relatorio-acessos.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { AcessosComponent } from './pages/acessos/acessos.component';
     TurmasModalComponent,
     CalendarioModalComponent,
     AcessosComponent,
+    RelatorioAcessosComponent,
   ],
   imports: [
     CommonModule,
