@@ -1,6 +1,9 @@
 <div class="calendario">
   <full-calendar [options]="calendarOptions" class="calendarioContainer"></full-calendar>
   <div class="cadastrarEvento">
+    <div class="voltar">
+      <button class="btnVoltar" (click)="back()"><mat-icon>keyboard_backspace</mat-icon></button>
+    </div>
     <button class="btnCadastrar" (click)="openModal('Create', '')"><mat-icon>person_add</mat-icon></button>
   </div>
 </div>

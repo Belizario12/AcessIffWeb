@@ -31,6 +31,7 @@ import { AddHorarioModalComponent } from './components/add-horario-modal/add-hor
 import { TurmasComponent } from './pages/turmas/turmas.component';
 import { TurmasModalComponent } from './components/turmas-modal/turmas-modal.component';
 import { CalendarioModalComponent } from './components/calendario-modal/calendario-modal.component';
+import { AcessosComponent } from './pages/acessos/acessos.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { CalendarioModalComponent } from './components/calendario-modal/calendar
     TurmasComponent,
     TurmasModalComponent,
     CalendarioModalComponent,
+    AcessosComponent,
   ],
   imports: [
     CommonModule,

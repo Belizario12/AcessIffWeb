@@ -1,0 +1,53 @@
+<div class="funcionario">
+  <div class="header">
+    <div class="voltar">
+      <button class="btnVoltar" (click)="back()"><mat-icon>keyboard_backspace</mat-icon></button>
+      <div class="title">
+        Acessos
+      </div>
+    </div>
+    <div class="buttons">
+      <mat-form-field class="searchButton" color="accent" appearance="outline">
+        <mat-label>Informe a Matrícula do Aluno</mat-label>
+        <mat-icon matSuffix class="searchIcon">search</mat-icon>
+        <input matInput (keyup)="applyFilter(pesquisaControl)" [formControl]="pesquisaControl">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="funcionarioContainer">
+    <div class="tableShadow">
+      <div class="funcionarioTable"
+        infinite-scroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="300"
+        [scrollWindow]="false"
+        (scrolled)="loadNextPage()">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+
+          <ng-container matColumnDef="matricula">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Matricula
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.matricula}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Nome
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              E-mail
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+  </div>
+</div>

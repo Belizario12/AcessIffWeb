@@ -86,5 +86,9 @@ export class CalendarioComponent {
     events: [],
     eventClick: this.handleEventClick.bind(this),
   };
+
+  back() {
+    window.history.back();
+  }
 }
 

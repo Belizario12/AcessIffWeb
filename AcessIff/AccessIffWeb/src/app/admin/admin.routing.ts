@@ -10,6 +10,7 @@ import { HorarioComponent } from './pages/horario/horario.component';
 import { ListaHorariosComponent } from './pages/lista-horarios/lista-horarios.component';
 import { ListaAlertasComponent } from './pages/lista-alertas/lista-alertas.component';
 import { TurmasComponent } from './pages/turmas/turmas.component';
+import { AcessosComponent } from './pages/acessos/acessos.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,10 @@ const routes: Routes = [
       {
         path: 'turmas',
         component: TurmasComponent,
+      },
+      {
+        path: 'acessos',
+        component: AcessosComponent,
       }
     ]
   },
