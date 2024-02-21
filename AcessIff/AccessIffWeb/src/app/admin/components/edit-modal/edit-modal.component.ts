@@ -79,7 +79,7 @@ export class EditModalComponent implements OnInit {
           this.alunoObj.turmaId = response.metadata.data.turma.id;
         },
         error: (error: any) => {
-          console.log(error);
+
           this.toastr.error("Não foi possível carregar as turmas!", "Erro!");
         }
       })
@@ -110,7 +110,7 @@ export class EditModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error: any) => {
-          console.log(error);
+
           this.toastr.error("Não foi possível criar o aluno!", "Erro!");
         }
       })
@@ -133,7 +133,7 @@ export class EditModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error: any) => {
-          console.log(error);
+
           this.toastr.error("Não foi possível atualizar o aluno!", "Erro!");
         }
       })
@@ -154,7 +154,7 @@ export class EditModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error: any) => {
-          console.log(error);
+
           this.toastr.error("Não foi possível criar o funcionário!", "Erro!");
         }
       })
@@ -171,7 +171,7 @@ export class EditModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error: any) => {
-          console.log(error);
+
           this.toastr.error("Não foi possível atualizar o funcionário!", "Erro!");
         }
       })
@@ -186,7 +186,7 @@ export class EditModalComponent implements OnInit {
         window.location.reload();
       },
       error: (error: any) => {
-        console.log(error);
+
         this.toastr.error("Não foi possível atualizar o alerta!", "Erro!");
       }
     })

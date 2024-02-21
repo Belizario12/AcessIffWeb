@@ -44,7 +44,7 @@ export class ListaAlertasComponent {
   }
 
   applyFilter(pesquisaValue: FormControl) {
-    console.log(pesquisaValue.value)
+    (pesquisaValue.value)
     if (pesquisaValue.value === '') {
       this.loadAlertas(this.currentPage, this.pageSize);
     } else {

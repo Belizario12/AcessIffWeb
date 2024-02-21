@@ -49,12 +49,12 @@ export class AlunoComponent {
         .GetAlunoByName(pesquisaValue.value.trim().toLowerCase(), this.currentPage=1, this.pageSize)
         .subscribe({
           next: (data) => {
-            console.log(data)
+            (data)
             const users = data.metadata.data;
             this.dataSource.data = users;
           },
           error: (error) => {
-            console.log(error)
+            (error)
             this.dataSource = new MatTableDataSource<any>();
           },
         });

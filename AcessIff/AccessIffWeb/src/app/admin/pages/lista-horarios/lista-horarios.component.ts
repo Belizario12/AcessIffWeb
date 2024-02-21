@@ -94,7 +94,7 @@ export class ListaHorariosComponent {
   }
 
   imprimir (element: any) {
-    console.log(element);
+    (element);
   }
 
   edit(element: any) {

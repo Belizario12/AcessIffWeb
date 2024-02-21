@@ -25,7 +25,7 @@ export class TurmasModalComponent {
   }
 
   save() {
-    console.log(this.data)
+    (this.data)
     if(this.turmaForm.valid) {
       if(this.data.type == "Create") {
         this.controller.turmaController.createTurma(this.turmaForm.value).subscribe({

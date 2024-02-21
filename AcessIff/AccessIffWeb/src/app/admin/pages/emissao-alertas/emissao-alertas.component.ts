@@ -34,12 +34,12 @@ export class EmissaoAlertasComponent {
 
       this.controller.alertaController.postAlerta(this.alertaObj).subscribe({
         next: (result) => {
-          console.log(result);
+          (result);
           this.toast.success('Alerta emitido com sucesso!', 'Sucesso');
           window.history.back();
         },
         error: (error) => {
-          console.log(error);
+
           this.toast.error('Erro ao emitir alerta!', 'Erro');
         }
       })

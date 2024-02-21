@@ -40,7 +40,7 @@ export class QrCodeComponent {
           },
         error: (error) => {
           this.toastr.error("Erro ao buscar aluno");
-          console.log(error);
+
         }
       })
     }

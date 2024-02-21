@@ -37,24 +37,23 @@ export class AcessosComponent {
 
   ngOnInit(): void {
     this.loadAlunos(this.currentPage, this.pageSize);
-    this.openReport(this.dataSource.data[0]);
   }
 
   applyFilter(pesquisaValue: FormControl) {
     if (pesquisaValue.value === '') {
       this.loadAlunos(this.currentPage, this.pageSize);
     } else {
-      console.log(pesquisaValue.value.trim().toLowerCase())
+      (pesquisaValue.value.trim().toLowerCase())
       this.controller.alunoController
       .GetAlunoByName(pesquisaValue.value.trim().toLowerCase(), this.currentPage=1, this.pageSize)
         .subscribe({
           next: (data: any) => {
-            console.log(data)
+            (data)
             const users = data.metadata.data;
             this.dataSource.data = users;
           },
           error: (error) => {
-            console.log(error)
+            (error)
             this.dataSource = new MatTableDataSource<any>();
           },
         });
@@ -64,7 +63,6 @@ export class AcessosComponent {
   loadAlunos(pageNumber: number, pageSize: number) {
     this.controller.alunoController.GetAlunos(pageNumber, pageSize).subscribe({
       next: (result: any) => {
-        console.log(result);
         this.dataSource.data = result.metadata.data;
       },
       error: (error: any) => {

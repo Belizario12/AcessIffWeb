@@ -1,7 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
@@ -21,19 +21,35 @@ export class RelatorioAcessosComponent {
   dataSource = new MatTableDataSource<any>();
   pesquisaControl = new FormControl();
   displayedColumns: string[] = [
+    'horario',
+    'tipo',
     'matricula',
-    'name',
-    'email',
   ];
 
   constructor(
-    private _liveAnnouncer: LiveAnnouncer,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private controller: UnitOfControllerService,
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<RelatorioAcessosComponent>,
   ) {}
 
   ngOnInit(): void {
+    (this.data)
+  }
+
+  selection() {
+    this.controller.acessoController.getAcessos(this.data.element.matricula, this.pesquisaControl.value).subscribe({
+      next: (response) => {
+        if(response.metadata.data.length === 0) {
+          this.toastr.warning("Não ná nenhum acesso nesta data.", "Aviso")
+        }
+        this.dataSource.data = response.metadata.data;
+      },
+      error: (error) => {
+
+        this.toastr.error(error.error.erros[0].message, "Erro")
+      }
+    })
   }
 
   back() {

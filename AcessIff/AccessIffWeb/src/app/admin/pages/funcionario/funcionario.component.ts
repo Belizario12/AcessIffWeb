@@ -45,17 +45,17 @@ export class FuncionarioComponent {
     if (pesquisaValue.value === '') {
       this.loadFuncionarios(this.currentPage, this.pageSize);
     } else {
-      console.log(pesquisaValue.value.trim().toLowerCase())
+      (pesquisaValue.value.trim().toLowerCase())
       this.controller.usuarioController
         .getUsuarioByName(pesquisaValue.value.trim().toLowerCase(), this.currentPage=1, this.pageSize)
         .subscribe({
           next: (data: any) => {
-            console.log(data)
+            (data)
             const users = data.metadata.data;
             this.dataSource.data = users;
           },
           error: (error) => {
-            console.log(error)
+            (error)
             this.dataSource = new MatTableDataSource<any>();
           },
         });
@@ -65,7 +65,7 @@ export class FuncionarioComponent {
   loadFuncionarios(pageNumber: number, pageSize: number) {
     this.controller.usuarioController.getUsuario(pageNumber, pageSize).subscribe({
       next: (result: any) => {
-        console.log(result);
+        (result);
         this.dataSource.data = result.metadata.data;
       },
       error: (error: any) => {

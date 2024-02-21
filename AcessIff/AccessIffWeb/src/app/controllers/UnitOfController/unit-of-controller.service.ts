@@ -7,6 +7,7 @@ import { AlertaControllerService } from '../AlertaController/alerta-controller.s
 import { TurmaControllerService } from '../TurmaController/turma-controller.service';
 import { HorarioService } from '../HorarioController/horario.service';
 import { EventosControllerService } from '../EventosController/eventos-controller.service';
+import { AcessoControllerService } from '../AcessoController/acesso-controller.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,6 @@ export class UnitOfControllerService {
     public turmaController: TurmaControllerService,
     public horarioController: HorarioService,
     public eventosController: EventosControllerService,
+    public acessoController: AcessoControllerService,
   ) { }
 }

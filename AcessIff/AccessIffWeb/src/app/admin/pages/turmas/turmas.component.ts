@@ -43,7 +43,7 @@ export class TurmasComponent {
   }
 
   applyFilter(pesquisaValue: FormControl) {
-    console.log(pesquisaValue.value)
+    (pesquisaValue.value)
     if (pesquisaValue.value === '') {
       this.loadTurmas(this.currentPage, this.pageSize);
     } else {

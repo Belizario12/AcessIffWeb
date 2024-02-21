@@ -46,7 +46,6 @@ export class CalendarioModalComponent {
     this.controller.eventosController.getEventos().subscribe({
       next: (response) => {
         this.eventosCadastrados = response.metadata.data;
-        console.log(this.eventosCadastrados);
       },
     });
   }
