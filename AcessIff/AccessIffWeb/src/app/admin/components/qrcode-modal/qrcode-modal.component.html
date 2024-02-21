@@ -10,7 +10,7 @@
       <h2 class="qrCodeTitle">Nome: {{ data.nome }}</h2>
       <div class="qrCodeData">
         <p class="qrCodeDataText">Matrícula: {{ data.matricula }}</p>
-        <p class="qrCodeDataText">Curso: {{ data.curso }}</p>
+        <p class="qrCodeDataText">Curso: {{ data.turma.nome }}</p>
       </div>
       <div class="qrCodeButton">
         <button class="btnBack" (click)="back()">Voltar</button>

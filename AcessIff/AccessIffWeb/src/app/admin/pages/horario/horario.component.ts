@@ -15,6 +15,7 @@ export class HorarioComponent {
   options: any[] = [];
   selectedOption: any;
   horarioId: string = '';
+  create: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -29,12 +30,15 @@ export class HorarioComponent {
       inicio: ['', Validators.required, timeFormatValidator()],
       termino: ['', Validators.required, timeFormatValidator()],
     });
-
+    console.log(this.router.params)
     this.controller.turmaController.getTurmas(1, 10).subscribe({
       next: (response) => {
         this.options = response.metadata.data;
         this.router.params.subscribe({
           next: (params) => {
+            if(params['disciplina'] !== undefined) {
+              this.create = false;
+            }
             this.horarioForm.patchValue({
               disciplina: params['disciplina'],
               turma: this.options.find((option) => option.id === params['turmaId']).nome,
@@ -59,11 +63,11 @@ export class HorarioComponent {
       horarioInicio: this.horarioForm.get('inicio')?.value,
       horarioFim: this.horarioForm.get('termino')?.value,
     }
-    if(this.router.params === null) {
+    if(this.create) {
       this.controller.horarioController.postHorarios(horarioObj).subscribe({
         next: (response) => {
           this.toastr.success('Horário cadastrado com sucesso');
-          window.location.reload();
+          window.history.back();
         },
         error: (error) => {
           this.toastr.error(error.message);

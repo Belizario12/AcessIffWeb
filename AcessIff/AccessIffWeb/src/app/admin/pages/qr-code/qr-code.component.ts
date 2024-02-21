@@ -23,8 +23,6 @@ export class QrCodeComponent {
   ) {
     this.qrcodeForm = this.fb.group({
       matricula: ['', Validators.required],
-      nome: ['', Validators.required],
-      curso: ['', Validators.required],
     })
   }
 
@@ -32,6 +30,7 @@ export class QrCodeComponent {
     if(this.qrcodeForm.valid) {
       this.controller.alunoController.GetAlunoByMatricula(this.qrcodeForm.value.matricula).subscribe({
         next: (response) => {
+          console.log(response.metadata.data)
           this.dialog.open(QrcodeModalComponent, {
             width: '1000px',
             height: '600px',
