@@ -46,6 +46,10 @@ const routes: Routes = [
         component: QrCodeComponent,
       },
       {
+        path: 'horario/:id/:turmaId/:dia/:horarioInicio/:horarioFim/:disciplina',
+        component: HorarioComponent,
+      },
+      {
         path: 'horario',
         component: HorarioComponent,
       },

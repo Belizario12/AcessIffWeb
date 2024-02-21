@@ -11,7 +11,7 @@
       <form [formGroup]="turmaForm">
         <mat-form-field color="accent" appearance="outline" class="data">
           <mat-label>Turma</mat-label>
-          <mat-select formControlName="turmas">
+          <mat-select formControlName="turmas" (selectionChange)="onSelection($event)">
             <mat-option *ngFor="let turma of turmas" [value]="turma.id">
               {{ turma.nome }}
             </mat-option>
@@ -24,164 +24,33 @@
     </div>
     <div class="seletorDia">
       <mat-tab-group color="accent">
-        <mat-tab label="Segunda-Feira">
+        <mat-tab *ngFor="let dia of diasSemana" [label]="dia.nome">
           <div class="labelContent">
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <mat-table [dataSource]="dia.dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="Disciplina">
+                <mat-header-cell *matHeaderCellDef> Disciplina </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.disciplina}} </mat-cell>
+              </ng-container>
+
               <ng-container matColumnDef="HorarioInicio">
                 <mat-header-cell *matHeaderCellDef> Horário Início </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.horarioInicio}} </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="HorarioFim">
                 <mat-header-cell *matHeaderCellDef> Horário Fim </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Disciplina">
-                <mat-header-cell *matHeaderCellDef> Disciplina </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.horarioFim}} </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="Editar">
                 <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                <mat-cell *matCellDef="let element"><button class="tableButtons" (click)="edit(element)"><mat-icon>edit</mat-icon></button>
+                </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="Excluir">
                 <mat-header-cell *matHeaderCellDef> Excluir </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-          </div>
-        </mat-tab>
-        <mat-tab label="Terça-Feira">
-          <div class="labelContent">
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <ng-container matColumnDef="HorarioInicio">
-                <mat-header-cell *matHeaderCellDef> Horário Início </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="HorarioFim">
-                <mat-header-cell *matHeaderCellDef> Horário Fim </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Disciplina">
-                <mat-header-cell *matHeaderCellDef> Disciplina </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Editar">
-                <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Excluir">
-                <mat-header-cell *matHeaderCellDef> Excluir </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-          </div>
-        </mat-tab>
-        <mat-tab label="Quarta-Feira">
-          <div class="labelContent">
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <ng-container matColumnDef="HorarioInicio">
-                <mat-header-cell *matHeaderCellDef> Horário Início </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="HorarioFim">
-                <mat-header-cell *matHeaderCellDef> Horário Fim </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Disciplina">
-                <mat-header-cell *matHeaderCellDef> Disciplina </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Editar">
-                <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Excluir">
-                <mat-header-cell *matHeaderCellDef> Excluir </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-          </div>
-        </mat-tab>
-        <mat-tab label="Quinta-Feira">
-          <div class="labelContent">
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <ng-container matColumnDef="HorarioInicio">
-                <mat-header-cell *matHeaderCellDef> Horário Início </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="HorarioFim">
-                <mat-header-cell *matHeaderCellDef> Horário Fim </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Disciplina">
-                <mat-header-cell *matHeaderCellDef> Disciplina </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Editar">
-                <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Excluir">
-                <mat-header-cell *matHeaderCellDef> Excluir </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-          </div>
-        </mat-tab>
-        <mat-tab label="Sexta-Feira">
-          <div class="labelContent">
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <ng-container matColumnDef="HorarioInicio">
-                <mat-header-cell *matHeaderCellDef> Horário Início </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="HorarioFim">
-                <mat-header-cell *matHeaderCellDef> Horário Fim </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Disciplina">
-                <mat-header-cell *matHeaderCellDef> Disciplina </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Editar">
-                <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="Excluir">
-                <mat-header-cell *matHeaderCellDef> Excluir </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                <mat-cell *matCellDef="let element"><button class="tableButtons" (click)="openModal('Delete', element)"><mat-icon>delete</mat-icon></button></mat-cell>
               </ng-container>
 
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

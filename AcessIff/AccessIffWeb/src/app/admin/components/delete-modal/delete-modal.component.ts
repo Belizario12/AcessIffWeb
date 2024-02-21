@@ -29,8 +29,19 @@ export class DeleteModalComponent {
           this.toastr.error(error.error.message, "Erro!");
         }
       })
-    } else {
+    } else if(this.data.type === "aluno") {
       this.controller.alunoController.DeleteAluno(this.data.element.id).subscribe({
+        next: (result: any) => {
+          this.toastr.success(result.message, "Sucesso!");
+          this.matDialogRef.close();
+          window.location.reload();
+        },
+        error: (error: any) => {
+          this.toastr.error(error.error.message, "Erro!");
+        }
+      })
+    } else if(this.data.type === "horario") {
+      this.controller.horarioController.deleteHorarios(this.data.element.id).subscribe({
         next: (result: any) => {
           this.toastr.success(result.message, "Sucesso!");
           this.matDialogRef.close();

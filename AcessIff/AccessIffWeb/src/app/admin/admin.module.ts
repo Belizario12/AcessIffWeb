@@ -67,6 +67,7 @@ import { TurmasModalComponent } from './components/turmas-modal/turmas-modal.com
     FullCalendarModule,
     MatSelectModule,
     MatTabsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }

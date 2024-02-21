@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UnitOfControllerService } from 'src/app/controllers/UnitOfController/unit-of-controller.service';
 import { CreateHorario } from 'src/app/interfaces/horario';
@@ -11,13 +12,15 @@ import { CreateHorario } from 'src/app/interfaces/horario';
 })
 export class HorarioComponent {
   horarioForm!: FormGroup;
-  options: any = [];
+  options: any[] = [];
   selectedOption: any;
+  horarioId: string = '';
 
   constructor(
     private fb: FormBuilder,
     private controller: UnitOfControllerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: ActivatedRoute
   ) {
     this.horarioForm = this.fb.group({
       disciplina: ['', Validators.required],
@@ -30,29 +33,55 @@ export class HorarioComponent {
     this.controller.turmaController.getTurmas(1, 10).subscribe({
       next: (response) => {
         this.options = response.metadata.data;
-        console.log(this.options)
+        this.router.params.subscribe({
+          next: (params) => {
+            this.horarioForm.patchValue({
+              disciplina: params['disciplina'],
+              turma: this.options.find((option) => option.id === params['turmaId']).nome,
+              diaSemana: params['dia'],
+              inicio: params['horarioInicio'],
+              termino: params['horarioFim']
+            });
+            this.horarioId = params['id'];
+          }
+        })
       }
-    })
+    });
+
   }
 
   save() {
+    const turmaId = this.options.find((option) => option.nome === this.horarioForm.get('turma')?.value);
     const horarioObj: CreateHorario = {
       disciplina: this.horarioForm.get('disciplina')?.value,
-      turmaId: this.horarioForm.get('turma')?.value.id,
+      turmaId: turmaId.id,
       dia: this.horarioForm.get('diaSemana')?.value,
       horarioInicio: this.horarioForm.get('inicio')?.value,
       horarioFim: this.horarioForm.get('termino')?.value,
     }
+    if(this.router.params === null) {
+      this.controller.horarioController.postHorarios(horarioObj).subscribe({
+        next: (response) => {
+          this.toastr.success('Horário cadastrado com sucesso');
+          window.location.reload();
+        },
+        error: (error) => {
+          this.toastr.error(error.message);
+        }
+      })
+    } else {
+      this.controller.horarioController.putHorarios(horarioObj, this.horarioId).subscribe({
+        next: (response) => {
+          this.toastr.success('Horário atualizado com sucesso');
+          window.history.back();
+        },
+        error: (error) => {
+          this.toastr.error(error.message);
+        }
+      })
 
-    this.controller.horarioController.postHorarios(horarioObj).subscribe({
-      next: (response) => {
-        this.toastr.success('Horário cadastrado com sucesso');
-        window.location.reload();
-      },
-      error: (error) => {
-        this.toastr.error(error.message);
-      }
-    })
+    }
+
   }
 
   back() {
