@@ -30,6 +30,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AddHorarioModalComponent } from './components/add-horario-modal/add-horario-modal.component';
 import { TurmasComponent } from './pages/turmas/turmas.component';
 import { TurmasModalComponent } from './components/turmas-modal/turmas-modal.component';
+import { CalendarioModalComponent } from './components/calendario-modal/calendario-modal.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { TurmasModalComponent } from './components/turmas-modal/turmas-modal.com
     AddHorarioModalComponent,
     TurmasComponent,
     TurmasModalComponent,
+    CalendarioModalComponent,
   ],
   imports: [
     CommonModule,

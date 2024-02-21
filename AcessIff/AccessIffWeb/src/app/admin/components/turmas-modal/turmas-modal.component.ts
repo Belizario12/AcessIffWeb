@@ -22,8 +22,6 @@ export class TurmasModalComponent {
     this.turmaForm = this.fb.group({
       nome: ['' || this.data.element.nome, Validators.required],
     })
-
-    console.log(this.data)
   }
 
   save() {

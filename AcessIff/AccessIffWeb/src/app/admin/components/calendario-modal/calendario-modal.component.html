@@ -1,0 +1,61 @@
+<div class="modalEvento" *ngIf="data.type != 'Delete'">
+  <div class="matDialogTitle">
+    <p matDialogTitle *ngIf="data.type === 'Create'">Cadastrar Evento</p>
+    <p matDialogTitle *ngIf="data.type === 'Edit'">Editar Evento</p>
+  </div>
+  <div class="formContent">
+    <form [formGroup]="eventoForm" class="formContainer">
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" required />
+        <mat-error *ngIf="eventoForm.controls['nome'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Data Início</mat-label>
+        <input matInput type="date" formControlName="dataInicio" required />
+        <mat-error *ngIf="eventoForm.controls['dataInicio'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Data Fim</mat-label>
+        <input matInput type="date" formControlName="dataFim" required />
+        <mat-error *ngIf="eventoForm.controls['dataFim'].hasError('required')">
+          Campo obrigatório!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" appearance="outline" class="data">
+        <mat-label>Tipo de Evento</mat-label>
+        <mat-select formControlName="tipo" placeholder="Selecione o tipo de evento">
+          <mat-option value="red">Avaliação</mat-option>
+          <mat-option value="blue">Feriado</mat-option>
+          <mat-option value="purple">Reposição</mat-option>
+          <mat-option value="green">Evento IFF</mat-option>
+          <mat-option value="orange">Sábado Letivo</mat-option>
+          <mat-option value="gray">Recesso</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="save()">Salvar</button>
+    <button class="deleteButton" (click)="delete()" *ngIf="this.data.type === 'Edit'">Deletar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>
+
+
+<div class="modalEvento" *ngIf="data.type == 'Delete'">
+  <div class="matDialogTitle">
+    <p matDialogTitle>Deletar Evento</p>
+  </div>
+  <div class="formContent">
+    <h2>Deseja realmente deletar este Evento?</h2>
+  </div>
+  <div class="buttons">
+    <button class="confirmButton" (click)="save('Delete')">Salvar</button>
+    <button class="cancelButton" (click)="fechar()">Cancelar</button>
+  </div>
+</div>

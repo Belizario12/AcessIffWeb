@@ -7,6 +7,7 @@ import { CalendarioService } from '../Calendario/calendario.service';
 import { AlertasService } from '../Alertas/alertas.service';
 import { TurmaService } from '../Turma/turma.service';
 import { HorarioService } from '../Horario/horario.service';
+import { EventosService } from '../Eventos/eventos.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,6 @@ export class UnitOfWorkService {
     public alertaService: AlertasService,
     public turmaService: TurmaService,
     public horarioService: HorarioService,
+    public eventosService: EventosService
   ) { }
 }

@@ -43,7 +43,7 @@ export class LoginComponent {
 
       },
       error: (error) => {
-        this.toastr.error(error.message, "Erro");
+        this.toastr.error(error.error.errors[0].message, "Erro");
       }
     })
 }

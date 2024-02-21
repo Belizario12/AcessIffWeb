@@ -93,7 +93,10 @@ export class TurmasComponent {
     type === 'Create' ? this.dialog.open(TurmasModalComponent, {
       width: '500px',
       data: {
-        type: 'Create'
+        type: 'Create',
+        element: {
+          nome: '',
+        }
       }
     }) : null;
     type === 'Edit' ? this.dialog.open(TurmasModalComponent, {

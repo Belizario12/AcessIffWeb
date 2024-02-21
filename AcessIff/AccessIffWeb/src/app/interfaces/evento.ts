@@ -3,7 +3,7 @@ export interface Eventos {
   nome: string;
   dataInicio: string;
   dataFim: string;
-  tipo: Tipo;
+  tipo: string;
 }
 
 export enum Tipo {

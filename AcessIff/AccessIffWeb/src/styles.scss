@@ -64,3 +64,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 $green: #5ba141;
 $background: #cccccc;
+
+.fc-button {
+  background-color: $green !important;
+  color: white;
+  border: 1px solid $green !important;
+}
+
+.fc-toolbar-title, .fc-col-header-cell-cushion, .fc-daygrid-day-number{
+  color: $green !important;
+}

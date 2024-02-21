@@ -1,0 +1,69 @@
+@import '../../../../styles.scss';
+
+.formContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.matDialogTitle {
+  background-color: $green;
+  height: 50px;
+}
+
+.matDialogTitle p {
+  font-size: 30px !important;
+  color: #fff !important;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 40px 20px 0px;
+}
+
+.confirmButton, .cancelButton, .deleteButton {
+  background-color: $green;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding: 10px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    transition: 0.7s;
+  }
+}
+
+.deleteButton {
+  background-color: #fa1e1e;
+  margin-left: 10px;
+}
+
+.cancelButton {
+  background-color: #fff;
+  color: $green;
+  border: 1px solid $green;
+  margin-left: 10px;
+}
+
+.data {
+  width: 450px;
+  margin: 5px 0px;
+}
+
+.formContent h2 {
+  margin: 20px 0px 40px 0px;
+  color: $green;
+  font-size: 25px;
+  font-weight: 500;
+}
